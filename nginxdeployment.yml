@@ -5,9 +5,13 @@ metadata:
   labels:
     name: nginxwebapp
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
-    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  minReadySeconds: 60
   selector:
     matchLabels:
       app: nginxwebapp
@@ -23,3 +27,10 @@ spec:
         ports:
         - name: ports
           containerPort: 80
+        resources: 
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits: 
+            cpu: 100m 
+            memory: 256Mi
