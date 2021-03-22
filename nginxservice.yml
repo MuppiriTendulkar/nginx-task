@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginxwebapp-service
+  labels:
+    name: nginxwebapp
+spec:
+  type: ClusterIP
+  selector:
+    app: nginxwebapp
+  ports:
+  - port: 80
+    targetPort: 80
