@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxwebapp-deployment
+  labels:
+    name: nginxwebapp
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nginxwebapp
+  template:
+    metadata:
+      name: nginxwebapp-pod
+      labels:
+        app: nginxwebapp
+    spec:
+      containers:
+      - name: nginxwebappcontainer
+        image: tendulkar999/nginx-image
+        ports:
+        - name: ports
+          containerPort: 80
